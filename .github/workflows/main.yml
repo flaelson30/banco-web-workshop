@@ -1,1 +1,34 @@
+name: Workflow CI Mentoria
 
+on:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    # configuração do sistema operacional
+    runs-on:  ubuntu-latest
+
+    # Variáveis de ambiente
+    env:
+      API_BASE_URL: 'https://localhost:3000'
+      PORT: 4000 
+    steps:
+      - name: Clone do projeto
+        uses: actions/checkout@v6.1.0
+        
+    # npm install
+    # npm run mock-server
+    # npm run server
+    # npx cypress run
+
+      - name: Instalando deps do projeto
+        run:  npm install
+
+      - name: Iniciando servidor de mock
+        run: npm run mock-server
+
+      - name:  Iniciando servidor da aplicação
+        run: npm run server
+
+      - name: Executando os testes E2E do projeto
+        run: npx cypress run
